@@ -1,0 +1,110 @@
+from turtle import*
+import math
+
+hideturtle()
+
+bgcolor("#6d6d7a")
+
+up()
+goto(-150, -80)
+down()
+
+fillcolor('#2d3457')
+begin_fill()
+for i in range (2):
+    forward(400)
+    left(90)
+    forward(300)
+    left(90)
+end_fill()
+
+color("#e3e3e9")
+
+up()
+goto(-62.5, 0)
+down()
+
+write("ISLE  OF  MAN", font = ("Arial", 20, "normal"))
+
+up()
+goto(-23, -30)
+down()
+
+write("TOURIST TROPHY", font = ("Arial", 10, "normal"))
+
+def T(x, y):
+    fillcolor('#e3e3e9')
+    begin_fill()
+    up()
+    goto(x, y)
+    down()
+    forward(40)
+    left(55)
+    forward(100)
+    right(55)
+    forward(40)
+    left(55)
+    forward(20)
+    left(125)
+    forward(120)
+    left(55)
+    forward(20)
+    left(125)
+    forward(40)
+    right(125)
+    forward(100)
+    end_fill()
+    
+T(-45, 75)
+
+left(125)
+T(30, 47)
+
+pensize(3)
+color("#ce5c3b")
+
+up()
+goto(120, 50)
+down()
+
+color("#ce5c3b")
+
+def courbe_tt(x0, y0, a, b, decalage=0):
+
+    up()
+    goto(x0 + a, y0 - decalage)
+    down()
+    for i in range(201):
+        t = math.pi * i / 200
+        x = x0 + a * math.cos(t)
+        y = y0 + b * math.sin(t) - decalage
+        goto(x, y)
+
+    points = [
+        (285, 48 - decalage),
+        (310, 40 - decalage),
+        (335, 30 - decalage),
+        (350, 22 - decalage),
+        (355, 18 - decalage) 
+    ]
+
+    for i in range(len(points)-1):
+        x0, y0p = points[i]
+        x1, y1p = points[i+1]
+        steps = 15
+        for s in range(steps+1):
+            x = x0 + (x1 - x0) * s / steps
+            y = y0p + (y1p - y0p) * s / steps
+            goto(x, y)
+
+pensize(6)
+color("#a9442a")
+courbe_tt(100, 40, 160, 60, decalage=3)
+
+pensize(4)
+color("#ce5c3b")
+courbe_tt(100, 40, 160, 60, decalage=0)
+
+done()
+
+mainloop()
